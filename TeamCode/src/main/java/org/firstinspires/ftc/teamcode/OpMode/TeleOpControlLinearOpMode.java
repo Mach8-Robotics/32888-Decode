@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -139,10 +140,10 @@ public class TeleOpControlLinearOpMode extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
 
         // set direction of wheel motors
-        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
         leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
         rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
 
         // set direction of subsystem motors
         intake.setDirection(DcMotor.Direction.FORWARD); // Forward should INTAKE.
