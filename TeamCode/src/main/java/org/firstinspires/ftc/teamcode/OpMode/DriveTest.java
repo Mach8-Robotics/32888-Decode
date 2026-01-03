@@ -22,15 +22,15 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
         public void initialize(){
             //controlAssignments
             driverOp = new GamepadEx(gamepad1);
-            frontleft = hardwareMap.get(Motor.class,"frontleft");
-            frontright = hardwareMap.get(Motor.class,"frontright");
-            backleft = hardwareMap.get(Motor.class,"backleft");
-            backright = hardwareMap.get(Motor.class,"backright");
+            frontleft = hardwareMap.get(Motor.class,"left_front_drive");
+            frontright = hardwareMap.get(Motor.class,"right_front_drive");
+            backleft = hardwareMap.get(Motor.class,"left_back_drive");
+            backright = hardwareMap.get(Motor.class,"right_back_drive");
             driveSubSystem = new DriveSubSystem(frontleft,frontright,backleft,backright);
             //sets IMU parameters and defines reference varibles
             RevHubOrientationOnRobot.LogoFacingDirection logoDirection;
             RevHubOrientationOnRobot.UsbFacingDirection usbDirection;
-            logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
+            logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;
             usbDirection = RevHubOrientationOnRobot.UsbFacingDirection.UP;
             RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection,usbDirection);
             // defines Imu
