@@ -179,22 +179,22 @@ public class TeleOpControlLinearOpMode extends LinearOpMode {
             double lateral = -gamepad1.right_stick_x;
             double yaw = -gamepad1.left_stick_x;
 
-            boolean intakeInButton = gamepad1.left_trigger > 0.2;
-            boolean intakeOutButton = gamepad1.left_bumper;
+            boolean intakeInButton = gamepad2.left_trigger > 0.2;
+            boolean intakeOutButton = gamepad2.left_bumper;
 
             // This conditional reduces ambiguity when multiple buttons are pressed.
             if (intakeInButton && intakeOutButton) {
                 intakeInButton = false;
             }
 
-            boolean footOutButton = gamepad1.a;
-            boolean footUpButton = gamepad1.b;
+            boolean footOutButton = gamepad2.a;
+            boolean footUpButton = gamepad2.b;
             if (footOutButton && footUpButton) {
                 footOutButton = false;
             }
 
-            boolean catapultUpButton = gamepad1.right_bumper;
-            boolean catapultDownButton = gamepad1.right_trigger > 0.2;
+            boolean catapultUpButton = gamepad2.right_bumper;
+            boolean catapultDownButton = gamepad2.right_trigger > 0.2;
             if (catapultUpButton && catapultDownButton) {
                 catapultUpButton = false;
             }

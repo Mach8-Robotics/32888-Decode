@@ -7,6 +7,6 @@ public class FootSubsystem extends SubsystemBase {
     private DcMotorEx FootMotor;
 
     public DcMotorEx FootMotor(){
-
+        return null;
     }
 }
