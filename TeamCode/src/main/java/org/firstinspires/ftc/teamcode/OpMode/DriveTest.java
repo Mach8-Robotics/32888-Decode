@@ -38,5 +38,15 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
             //Drive commands
             driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg,true));
         }
+
+        public void runOpMode(){
+            initialize();
+            waitForStart();
+
+            while(!isStopRequested() && opModeIsActive()){
+                run();
+            }
+            reset();
+        }
     }
 
