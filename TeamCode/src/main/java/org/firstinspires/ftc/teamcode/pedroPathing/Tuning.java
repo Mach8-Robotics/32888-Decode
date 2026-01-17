@@ -127,7 +127,9 @@ public class Tuning extends SelectableOpMode {
  */
 class LocalizationTest extends OpMode {
     @Override
-    public void init() {}
+    public void init() {
+        follower.setPose(new Pose(72, 72, Math.toRadians(90)));
+    }
 
     /** This initializes the PoseUpdater, the mecanum drive motors, and the Panels telemetry. */
     @Override
@@ -151,7 +153,7 @@ class LocalizationTest extends OpMode {
      */
     @Override
     public void loop() {
-        follower.setTeleOpDrive(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, true);
+        follower.setTeleOpDrive(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, true);
         follower.update();
 
         telemetryM.debug("x:" + follower.getPose().getX());
