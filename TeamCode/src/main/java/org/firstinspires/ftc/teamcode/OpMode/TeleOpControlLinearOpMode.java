@@ -176,8 +176,9 @@ public class TeleOpControlLinearOpMode extends LinearOpMode {
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
             //axial = speed, lateral = turn, yaw = strafe
             double axial = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
-            double lateral = -gamepad1.right_stick_x;
-            double yaw = -gamepad1.left_stick_x;
+            double lateral = gamepad1.right_stick_x;
+            double yaw = gamepad1.left_stick_x;
+            // for tomcat i think
 
             boolean intakeInButton = gamepad2.left_trigger > 0.2;
             boolean intakeOutButton = gamepad2.left_bumper;

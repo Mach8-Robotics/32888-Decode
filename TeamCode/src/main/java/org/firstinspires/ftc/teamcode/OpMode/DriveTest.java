@@ -22,11 +22,12 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
         public void initialize(){
             //controlAssignments
             driverOp = new GamepadEx(gamepad1);
-            frontleft = hardwareMap.get(Motor.class,"left_front_drive");
-            frontright = hardwareMap.get(Motor.class,"right_front_drive");
-            backleft = hardwareMap.get(Motor.class,"left_back_drive");
-            backright = hardwareMap.get(Motor.class,"right_back_drive");
-            driveSubSystem = new DriveSubSystem(frontleft,frontright,backleft,backright);
+            frontleft = new Motor(hardwareMap,"left_front_drive");
+            frontright = new Motor(hardwareMap,"right_front_drive");
+            backleft = new Motor(hardwareMap,"left_back_drive");
+            backright = new Motor(hardwareMap,"right_back_drive");
+            driveSubSystem = new DriveSubSystem(frontleft,backleft,frontright,backright);
+
             //sets IMU parameters and defines reference varibles
             RevHubOrientationOnRobot.LogoFacingDirection logoDirection;
             RevHubOrientationOnRobot.UsbFacingDirection usbDirection;
@@ -36,7 +37,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
             // defines Imu
             imuSubsystem = new ImuSubsystem(hardwareMap.get(IMU.class, "imu"),orientationOnRobot);
             //Drive commands
-            driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg,true));
+            driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg, true));
         }
 
         public void runOpMode(){

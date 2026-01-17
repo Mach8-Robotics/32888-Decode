@@ -18,10 +18,18 @@ public class DriveCommand extends CommandBase {
                              DoubleSupplier gryoAngle,boolean fieldCentric){
             this.driveSubSystem = driveSubSystem;
             this.strafe = strafe;
+            this.forward = forward;
+            this.turn = turn;
+            this.gryoAngle = gryoAngle;
+            this.fieldCentric = fieldCentric;
             addRequirements(driveSubSystem);
     }
     @Override
-    public boolean isFinished(){
+    public boolean isFinished() {
         return false;
+    }
+    @Override
+    public void execute(){
+        driveSubSystem.drive(strafe.getAsDouble(), forward.getAsDouble(), turn.getAsDouble(),gryoAngle.getAsDouble(),fieldCentric);
     }
 }
