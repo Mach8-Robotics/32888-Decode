@@ -25,6 +25,6 @@ public class IntakeCommand extends CommandBase {
     @Override
     public void initialize(){
             timer.start();
-            intakeSubsystem.intake(power);
+            intakeSubsystem.Intake(power);
     }
 }
