@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 
 
-    @TeleOp(name = "Drive Test")
+    @TeleOp(name = "Tomcat: Drive Test")
     public class DriveTest extends CommandOpMode{
         private GamepadEx driverOp;
         private DriveSubSystem driveSubSystem;

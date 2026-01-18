@@ -64,7 +64,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 // Based on the sample: Basic: Omni Linear OpMode
-@TeleOp(name = "TeleOp Control", group = "Teleop")
+@TeleOp(name = "Tomcat: Everybot TeleOp", group = "Teleop")
 
 public class TeleOpControlLinearOpMode extends LinearOpMode {
 
