@@ -14,18 +14,20 @@ public class LaunchCommand extends CommandBase {
     public LaunchCommand(LaunchSubsystem launchSubsystem) {
         this.launchSubsystem = launchSubsystem;
         addRequirements(launchSubsystem);
-        commandTimer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
+        commandTimer = new Timing.Timer(200, TimeUnit.MILLISECONDS);
         commandTimer.start();
     }
 
     @Override
     public void execute(){
-
         launchSubsystem.Launch();
     }
 
-    @Override
     public boolean isFinished(){
         return commandTimer.done();
+    }
+
+    public void end(boolean interrupted){
+        launchSubsystem.Hold();
     }
 }

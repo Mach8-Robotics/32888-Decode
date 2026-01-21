@@ -13,19 +13,18 @@ public class RetractCommand extends CommandBase {
 
     public RetractCommand(LaunchSubsystem launchSubsystem) {
         this.launchSubsystem = launchSubsystem;
-        addRequirements(launchSubsystem);
-        commandTimer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
+        commandTimer = new Timing.Timer(500, TimeUnit.MILLISECONDS);
         commandTimer.start();
     }
 
     @Override
     public void execute(){
-
         launchSubsystem.Retract();
     }
-    
-    @Override
     public boolean isFinished(){
         return commandTimer.done();
+    }
+    public void end(boolean interrupted){
+        launchSubsystem.Hold();
     }
 }
