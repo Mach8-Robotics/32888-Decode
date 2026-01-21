@@ -16,7 +16,5 @@ public class HoldLaunchCommand extends CommandBase {
     }
 
     @Override
-    public void execute(){
-        launchSubsystem.Hold();
-    }
+    public void initialize(){launchSubsystem.Hold();}
 }

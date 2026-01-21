@@ -35,15 +35,6 @@ public class LaunchTest extends CommandOpMode{
         driverOp.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
                 new RetractCommand(launchSubsystem));
 
-
-
-//        driverOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(
-//                new InstantCommand(()->launchSubsystem.Launch()));
-//
-//        driverOp.getGamepadButton(GamepadKeys.Button.A).whenReleased(
-//                new InstantCommand(()->launchSubsystem.Hold()));
-
-
     }
 
     public void runOpMode(){
