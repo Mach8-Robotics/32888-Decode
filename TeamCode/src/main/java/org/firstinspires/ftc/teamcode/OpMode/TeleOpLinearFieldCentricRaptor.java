@@ -28,12 +28,14 @@
  */
 
 package org.firstinspires.ftc.teamcode.OpMode;
+
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 /*
@@ -65,9 +67,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
  */
 
 // Based on the sample: Basic: Omni Linear OpMode
-@TeleOp(name = "tomcat: evrybot TeleOp Control field centric", group = "Teleop")
+@TeleOp(name = "raptor: evrybot TeleOp Control field centric", group = "Teleop")
 
-public class TeleOpLinearFieldCentric extends LinearOpMode {
+public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
@@ -143,10 +145,10 @@ public class TeleOpLinearFieldCentric extends LinearOpMode {
         // Keep testing until ALL the wheels move the robot forward when you push the left joystick forward.
 
         // set direction of wheel motors
-        leftFrontDrive.setDirection(DcMotor.Direction.REVERSE);
-        leftBackDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightFrontDrive.setDirection(DcMotor.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftFrontDrive.setDirection(DcMotor.Direction.FORWARD);
+        leftBackDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightFrontDrive.setDirection(DcMotor.Direction.REVERSE);
+        rightBackDrive.setDirection(DcMotor.Direction.REVERSE);
 
 
         imu = hardwareMap.get(IMU.class, "imu");
