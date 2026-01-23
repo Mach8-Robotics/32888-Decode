@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous( name= "Blue Goal", group ="Blue")
-public class BlueGoal extends AutoBase{
+@Autonomous( name= "Red Goal Delay To End", group ="Red Delay")
+public class RedGoalDelayToEnd extends AutoBase{
     Command setPathTo1, setPathTo0;
     Path path1, path0;
     private DcMotor rightCatapultMotor, leftCatapultMotor;
@@ -28,17 +28,17 @@ public class BlueGoal extends AutoBase{
         follower = Constants.createFollower(hardwareMap);
         rightCatapultMotor = hardwareMap.get(DcMotor.class,"catapult1");
         leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
-        follower.setStartingPose(new Pose(24,122,Math.toRadians(144)));
-        autoDriveSubsystem = new AutoDriveSubsystem(follower, telemetry, new Pose(22.5,124.5,Math.toRadians(144)));
+        follower.setStartingPose(new Pose(24,122,Math.toRadians(144)).mirror());
+        autoDriveSubsystem = new AutoDriveSubsystem(follower, telemetry, new Pose(22.5,124.5,Math.toRadians(144)).mirror());
         launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
     }
 
     @Override
     public void buildpaths() {
-        path0 = new Path(new BezierCurve(new Pose(24, 122), new Pose(26, 120)));
-        path0.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
-        path1 = new Path(new BezierCurve(new Pose(26, 120), new Pose(19.000, 108.000)));
-        path1.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(180));
+        path0 = new Path(new BezierCurve(new Pose(24, 122).mirror(), new Pose(26, 120).mirror()));
+        path0.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
+        path1 = new Path(new BezierCurve(new Pose(26, 120).mirror(), new Pose(19.000, 108.000).mirror()));
+        path1.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(0));
 
     }
 
@@ -55,6 +55,7 @@ public class BlueGoal extends AutoBase{
             autoDriveSubsystem.followPath(path1, true);
         });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
+                new WaitCommand(22000),
                 setPathTo0,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo1,

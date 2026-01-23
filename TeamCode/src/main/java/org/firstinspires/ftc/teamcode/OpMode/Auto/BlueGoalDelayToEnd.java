@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous( name= "Blue Goal", group ="Blue")
-public class BlueGoal extends AutoBase{
+@Autonomous( name= "Blue Goal Delay To End", group ="Blue Delay")
+public class BlueGoalDelayToEnd extends AutoBase{
     Command setPathTo1, setPathTo0;
     Path path1, path0;
     private DcMotor rightCatapultMotor, leftCatapultMotor;
@@ -55,6 +55,7 @@ public class BlueGoal extends AutoBase{
             autoDriveSubsystem.followPath(path1, true);
         });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
+                new WaitCommand(22000),
                 setPathTo0,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo1,

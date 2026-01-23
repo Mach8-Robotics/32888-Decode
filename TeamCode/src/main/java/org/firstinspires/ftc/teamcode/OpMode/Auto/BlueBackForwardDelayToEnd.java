@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.OpMode.Auto;
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.pedropathing.geometry.BezierCurve;
 import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.Path;
@@ -11,8 +12,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.Subsystem.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
-@Autonomous( name= "Blue Back Forward", group ="Blue")
-public class BlueBackForward extends AutoBase{
+
+@Autonomous( name= "Blue Back Forward Delay To End", group ="Blue Delay")
+public class BlueBackForwardDelayToEnd extends AutoBase{
     Command setPathTo1;
     Path path1;
     @Override
@@ -39,6 +41,7 @@ public class BlueBackForward extends AutoBase{
             autoDriveSubsystem.followPath(path1, true);
         });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
+                new WaitCommand(26000),//Gives about 4 seconds left after drive
                 setPathTo1,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry)
         );

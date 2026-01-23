@@ -11,8 +11,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.Subsystem.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
-@Autonomous( name= "Blue Back Forward", group ="Blue")
-public class BlueBackForward extends AutoBase{
+
+@Autonomous( name= "Blue Back Side Ways", group ="Blue")
+public class BlueBackSideWays extends AutoBase{
     Command setPathTo1;
     Path path1;
     @Override
@@ -24,7 +25,7 @@ public class BlueBackForward extends AutoBase{
 
     @Override
     public void buildpaths() {
-        path1 = new Path(new BezierCurve(new Pose(56.000, 8.000), new Pose(56.000, 30.000)));
+        path1 = new Path(new BezierCurve(new Pose(56.000, 8.000), new Pose(38, 10)));
         path1.setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(90));
 
     }
