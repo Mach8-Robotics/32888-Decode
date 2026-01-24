@@ -29,15 +29,20 @@
 
 package org.firstinspires.ftc.teamcode.OpMode;
 
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 /*
  * This file contains an example of a Linear "OpMode".
  * An OpMode is a 'program' that runs in either the autonomous or the teleop period of an FTC match.
@@ -88,6 +93,8 @@ public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
     private DcMotor catapult1 = null;
     private DcMotor catapult2 = null;
     private DcMotor foot = null;
+    private DistanceSensor sensorDistance = null;
+    private Servo led = null;
 
     // motor power 1 = 100% and 0.5 = 50%
     // negative values = reverse ex: -0.5 = reverse 50%
@@ -162,7 +169,14 @@ public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
                 RevHubOrientationOnRobot(logoDirection, usbDirection);
         imu.initialize(new IMU.Parameters(orientationOnRobot));
 
+        // you can use this as a regular DistanceSensor.
+        sensorDistance = hardwareMap.get(DistanceSensor.class, "distance_sensor");
 
+        // you can also cast this to a Rev2mDistanceSensor if you want to use added
+        // methods associated with the Rev2mDistanceSensor class.
+        Rev2mDistanceSensor sensorTimeOfFlight = (Rev2mDistanceSensor) sensorDistance;
+        led = hardwareMap.get(Servo.class, "led");
+        led.setPosition(0.0);
 
         // set direction of subsystem motors
         intake.setDirection(DcMotor.Direction.FORWARD); // Forward should INTAKE.
@@ -269,6 +283,18 @@ public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
                 catapult_mode_str = "HOLD";
             }
 
+            double range = sensorTimeOfFlight.getDistance(DistanceUnit.INCH);
+            if (range > 5.0 && range < 12.0){
+                led.setPosition(0.48);
+            }
+            else{
+                led.setPosition(0.0);
+            }
+
+            if (gamepad1.dpadDownWasPressed()){
+                imu.resetYaw();
+            }
+
             driveFieldRelative(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
 
@@ -278,6 +304,7 @@ public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.addData("Intake", "%%4.2f", intake.getPower());
+            telemetry.addData("range", "%.01f", range);
             telemetry.addData("Foot Power", "%4.2f", foot.getPower());
             telemetry.addData("Foot MODE", "%s", footmode);
             telemetry.addData("Catapult1 Current/Target/power", "%d, %d, %4.2f",
