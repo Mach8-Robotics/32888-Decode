@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.OpMode;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -11,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Subsystem.SimpleDCMotorSubsystem;
 import org.firstinspires.ftc.teamcode.commands.RunMotorCommand;
 import org.firstinspires.ftc.teamcode.commands.StopMotorCommand;
 @TeleOp
+@Disabled
 public class DCMotorOpMode extends CommandOpMode {
     private DcMotor motor;
     private SimpleDCMotorSubsystem motorSubsystem;

@@ -4,6 +4,7 @@ import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.IMU;
 
@@ -13,6 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 
 
     @TeleOp(name = "Tomcat: Drive Test")
+    @Disabled
     public class DriveTest extends CommandOpMode{
         private GamepadEx driverOp;
         private DriveSubSystem driveSubSystem;
