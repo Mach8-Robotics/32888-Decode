@@ -12,11 +12,12 @@ import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.commands.HoldLaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
+import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 
 
 @TeleOp(name = "Tomcat: Launch Test")
-@Disabled
+
 public class LaunchTest extends CommandOpMode{
     private GamepadEx driverOp;
     private LaunchSubsystem launchSubsystem;
@@ -29,13 +30,9 @@ public class LaunchTest extends CommandOpMode{
         rightCatapultMotor = hardwareMap.get(DcMotor.class,"catapult1");
         leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
         launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
-
-
-        driverOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(
-                new LaunchCommand(launchSubsystem));
-
-        driverOp.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
-                new RetractCommand(launchSubsystem));
+        launchSubsystem.setDefaultCommand(new LaunchOrRetractCommand(launchSubsystem,
+                ()-> driverOp.gamepad.right_trigger>0.2,
+                ()-> driverOp.gamepad.right_bumper));
 
     }
 
