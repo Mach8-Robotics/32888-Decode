@@ -13,8 +13,8 @@ import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 
 
-    @TeleOp(name = "Tomcat: Drive Test")
-    @Disabled
+    @TeleOp(name = "Raptor: Drive Test")
+
     public class DriveTest extends CommandOpMode{
         private GamepadEx driverOp;
         private DriveSubSystem driveSubSystem;
@@ -39,7 +39,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
             // defines Imu
             imuSubsystem = new ImuSubsystem(hardwareMap.get(IMU.class, "imu"),orientationOnRobot);
             //Drive commands
-            driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg, true));
+            driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg, false));
         }
 
         public void runOpMode(){
