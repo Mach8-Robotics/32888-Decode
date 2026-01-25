@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 
 
     @TeleOp(name = "Raptor: Drive Test")
-
+@Disabled
     public class DriveTest extends CommandOpMode{
         private GamepadEx driverOp;
         private DriveSubSystem driveSubSystem;

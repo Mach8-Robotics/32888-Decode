@@ -16,11 +16,12 @@ import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
+import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 
 
-@TeleOp(name = "Tomcat: Drive Test")
-public class TeleOpControlFieldCentric extends CommandOpMode{
+@TeleOp(name = "Raptor: Competition TeleOp")
+public class RobotCentricTeleOpControl extends CommandOpMode{
     private GamepadEx driverOp, secondaryOp;
     private DriveSubSystem driveSubSystem;
     private LaunchSubsystem launchSubsystem;
@@ -33,21 +34,28 @@ public class TeleOpControlFieldCentric extends CommandOpMode{
     @Override
     public void initialize() {
 
-    driverOp = new GamepadEx(gamepad1);
-    secondaryOp = new GamepadEx(gamepad2);
+        driverOp = new GamepadEx(gamepad1);
+        secondaryOp = new GamepadEx(gamepad2);
 
-    rightCatapultMotor = hardwareMap.get(DcMotor.class,"catapult1");
-    leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
-    launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
+        rightCatapultMotor = hardwareMap.get(DcMotor.class,"catapult1");
+        leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
+        launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
+        launchSubsystem.setDefaultCommand(new LaunchOrRetractCommand(launchSubsystem,
+                ()-> secondaryOp.gamepad.right_trigger>0.2,
+                ()-> secondaryOp.gamepad.right_bumper));
 
-    frontleft = new Motor(hardwareMap,"left_front_drive");
-    frontright = new Motor(hardwareMap,"right_front_drive");
-    backleft = new Motor(hardwareMap,"left_back_drive");
-    backright = new Motor(hardwareMap,"right_back_drive");
-    driveSubSystem = new DriveSubSystem(frontleft,backleft,frontright,backright);
+        frontleft = new Motor(hardwareMap,"left_front_drive");
+        frontright = new Motor(hardwareMap,"right_front_drive");
+        backleft = new Motor(hardwareMap,"left_back_drive");
+        backright = new Motor(hardwareMap,"right_back_drive");
+        driveSubSystem = new DriveSubSystem(frontleft,backleft,frontright,backright);
 
-    intakeMotor = hardwareMap.get(DcMotor.class,"intake");
-    intakeSubsystem = new IntakeSubsystem(intakeMotor);
+        intakeMotor = hardwareMap.get(DcMotor.class,"intake");
+        intakeSubsystem = new IntakeSubsystem(intakeMotor);
+        intakeSubsystem.setDefaultCommand(
+            new IntakeCommand(intakeSubsystem,
+                () -> secondaryOp.gamepad.left_trigger >0.2,
+                ()-> secondaryOp.gamepad.left_bumper));
 
         //sets IMU parameters and defines reference varibles
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection;
@@ -58,19 +66,15 @@ public class TeleOpControlFieldCentric extends CommandOpMode{
         // defines Imu
         imuSubsystem = new ImuSubsystem(hardwareMap.get(IMU.class, "imu"),orientationOnRobot);
 
-        secondaryOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(
-                new LaunchCommand(launchSubsystem));
-        secondaryOp.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
-                new RetractCommand(launchSubsystem));
-
-        intakeSubsystem.setDefaultCommand(
-                new IntakeCommand(intakeSubsystem,
-                        () -> secondaryOp.gamepad.left_trigger >0.2,
-                        ()-> secondaryOp.gamepad.left_bumper));
 
         //Drive commands
-        driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,driverOp::getLeftX, driverOp::getLeftY, driverOp::getRightX,imuSubsystem::getYawDeg, true));
-    }
+        driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,
+                                                        driverOp::getLeftX,
+                                                        driverOp::getLeftY,
+                                                        driverOp::getRightX,
+                                                        imuSubsystem::getYawDeg,
+                                                false));
+}
 
     public void runOpMode(){
         initialize();

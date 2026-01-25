@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -73,6 +74,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 // Based on the sample: Basic: Omni Linear OpMode
 @TeleOp(name = "raptor: evrybot TeleOp Control field centric", group = "Teleop")
+@Disabled
 
 public class TeleOpLinearFieldCentricRaptor extends LinearOpMode {
 

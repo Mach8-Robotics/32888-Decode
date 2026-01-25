@@ -17,6 +17,7 @@ import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 
 
 @TeleOp(name = "Tomcat: Launch Test")
+@Disabled
 
 public class LaunchTest extends CommandOpMode{
     private GamepadEx driverOp;
