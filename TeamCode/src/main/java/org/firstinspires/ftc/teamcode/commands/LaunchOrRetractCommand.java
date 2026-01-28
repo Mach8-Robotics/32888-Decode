@@ -10,7 +10,6 @@ import java.util.function.BooleanSupplier;
 
 public class LaunchOrRetractCommand extends CommandBase {
     private LaunchSubsystem launchSubsystem;
-    private Timing.Timer commandTimer;
     private BooleanSupplier shouldLaunch, shouldRetract;
 
     public LaunchOrRetractCommand(LaunchSubsystem launchSubsystem, BooleanSupplier launch, BooleanSupplier retract) {
@@ -18,16 +17,7 @@ public class LaunchOrRetractCommand extends CommandBase {
         shouldLaunch = launch;
         shouldRetract = retract;
         addRequirements(launchSubsystem);
-        commandTimer = new Timing.Timer(100, TimeUnit.MILLISECONDS);
     }
-
-    @Override
-    public void initialize(){
-        commandTimer.start();
-    }
-
-    @Override
-    public boolean isFinished(){ return commandTimer.done(); }
 
     @Override
     public void execute(){
@@ -35,10 +25,11 @@ public class LaunchOrRetractCommand extends CommandBase {
             launchSubsystem.Launch();
         }
         else if(shouldRetract.getAsBoolean()){
-            ;launchSubsystem.Retract();
+            launchSubsystem.Retract();
         }
+        else {
+            launchSubsystem.Hold();
+        }
+        
     }
-
-    @Override
-    public void end(boolean interrupted){launchSubsystem.Hold();}
 }
