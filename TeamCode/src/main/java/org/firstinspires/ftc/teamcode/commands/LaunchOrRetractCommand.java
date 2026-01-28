@@ -30,6 +30,6 @@ public class LaunchOrRetractCommand extends CommandBase {
         else {
             launchSubsystem.Hold();
         }
-        
+
     }
 }
