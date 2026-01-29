@@ -6,15 +6,19 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Subsystem.DriveSubSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystem.RangeSubsystem;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
+import org.firstinspires.ftc.teamcode.commands.MonitorRangeCommand;
 
 
 @TeleOp(name = "Raptor: Competition TeleOp")
@@ -27,6 +31,10 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
     private DcMotor rightCatapultMotor, leftCatapultMotor;
     private Motor frontleft,frontright,backleft,backright;
     private DcMotor intakeMotor;
+
+    private DistanceSensor distanceSensor;
+    private Servo led;
+    private RangeSubsystem rangeSubsystem;
 
     @Override
     public void initialize() {
@@ -63,6 +71,10 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         // defines Imu
         imuSubsystem = new ImuSubsystem(hardwareMap.get(IMU.class, "imu"),orientationOnRobot);
 
+        distanceSensor=hardwareMap.get(DistanceSensor.class,"distance_sensor");
+        led=hardwareMap.get(Servo.class,"led");
+        rangeSubsystem=new RangeSubsystem(distanceSensor,led);
+        rangeSubsystem.setDefaultCommand(new MonitorRangeCommand(rangeSubsystem));
 
         //Drive commands
         driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,
