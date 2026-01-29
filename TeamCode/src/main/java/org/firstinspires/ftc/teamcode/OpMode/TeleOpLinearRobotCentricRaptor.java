@@ -72,6 +72,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 // Based on the sample: Basic: Omni Linear OpMode
 @TeleOp(name = "Raptor: Everybot TeleOp Control robot centric", group = "Teleop")
+@Disabled
 public class TeleOpLinearRobotCentricRaptor extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.

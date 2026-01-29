@@ -19,6 +19,26 @@ public class DriveSubSystem extends SubsystemBase {
         this.backRight.setInverted(true);
         this.drive = new MecanumDrive(false,frontLeft,frontRight,backLeft,backRight);
     }
+
+    public DriveSubSystem(Motor frontLeft,Motor backLeft,Motor frontRight,Motor backRight, boolean isTomcat){
+        this.frontLeft = frontLeft;
+        this.frontRight = frontRight;
+        this.backLeft = backLeft;
+        this.backRight = backRight;
+        if(!isTomcat) {
+            this.frontLeft.setInverted(false);
+            this.backLeft.setInverted(false);
+            this.frontRight.setInverted(true);
+            this.backRight.setInverted(true);
+        }
+        else {
+            this.frontLeft.setInverted(true);
+            this.backLeft.setInverted(true);
+            this.frontRight.setInverted(false);
+            this.backRight.setInverted(false);
+        }
+        this.drive = new MecanumDrive(false,frontLeft,frontRight,backLeft,backRight);
+    }
     public void drive(double strafe,double forward,double turn,double gyroAngle, boolean fieldCentric){
 
         if(fieldCentric){

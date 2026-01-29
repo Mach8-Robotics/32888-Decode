@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
-import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -15,13 +14,11 @@ import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
-import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
-import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 
 
 @TeleOp(name = "Raptor: Competition TeleOp")
-public class RobotCentricTeleOpControl extends CommandOpMode{
+public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
     private GamepadEx driverOp, secondaryOp;
     private DriveSubSystem driveSubSystem;
     private LaunchSubsystem launchSubsystem;
