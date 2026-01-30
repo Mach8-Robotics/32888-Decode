@@ -20,7 +20,12 @@ private static final double LED_OFF_POSITION =0.0;
 
     public void CheckRange() {
         double distance=distanceSensor.getDistance(DistanceUnit.INCH);
-
+        if(distance>5.0 && distance<12.0){
+            led.setPosition(LED_GREEN_POSITION);
+        }
+        else{
+            led.setPosition(LED_OFF_POSITION);
+        }
     }
 
 
