@@ -37,7 +37,7 @@ public class BlueGoal extends AutoBase{
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24, 122), new Pose(26, 120)));
         path0.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
-        path1 = new Path(new BezierCurve(new Pose(26, 120), new Pose(19.000, 108.000)));
+        path1 = new Path(new BezierCurve(new Pose(26, 120), new Pose(19.000, 107.000)));
         path1.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(180));
 
     }

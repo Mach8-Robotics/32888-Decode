@@ -36,7 +36,7 @@ public class RedGoal extends AutoBase{
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24, 122).mirror(), new Pose(26, 120).mirror()));
         path0.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
-        path1 = new Path(new BezierCurve(new Pose(26, 120).mirror(), new Pose(19.000, 108.000).mirror()));
+        path1 = new Path(new BezierCurve(new Pose(26, 120).mirror(), new Pose(19.000, 106 .000).mirror()));
         path1.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(0));
 
     }
