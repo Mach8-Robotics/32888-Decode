@@ -59,7 +59,7 @@ public class RedGoal extends AutoBase{
         path4 = new Path(new BezierCurve(new Pose(48.000, 84.000).mirror(), new Pose(13.000, 84.000).mirror()));
         path4.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path5 = new Path(new BezierCurve(new Pose(13.000, 84.000).mirror(), new Pose(36.000, 84.000).mirror()));
-        path5.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(36));
+        path5.setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(36));
         path6 = new Path(new BezierCurve(new Pose(36.000, 84.000).mirror(), new Pose(36.000, 108.000).mirror()));
         path6.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
         path7 = new Path(new BezierCurve(new Pose(36.000, 108.000).mirror(), new Pose(26.000, 120.000).mirror()));
@@ -205,11 +205,14 @@ public class RedGoal extends AutoBase{
                 setPathTo14,
                 // Stop intake
                 new InstantCommand(()->{follower.setMaxPower(1);}),
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new ParallelCommandGroup(new AutoDriveCommand(autoDriveSubsystem, telemetry), new RetractCommand(launchSubsystem)),
+
                 setPathTo15,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new RetractCommand(launchSubsystem),
+                new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
                 setPathTo1,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry)
