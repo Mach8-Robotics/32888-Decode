@@ -18,7 +18,7 @@ public class AutoIntakeCommand extends CommandBase {
 
     @Override
     public void execute(){
-        intakeSubsystem.Intake(false);
+        intakeSubsystem.Intake(true);
 
     }
 }

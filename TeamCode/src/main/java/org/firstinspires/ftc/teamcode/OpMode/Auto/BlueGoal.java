@@ -49,13 +49,9 @@ public class BlueGoal extends AutoBase{
         // path1.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(180));
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000), new Pose(26.000, 120.000).mirror()));
         path0.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
-<<<<<<< Updated upstream
         path1 = new Path(new BezierCurve(new Pose(26, 120), new Pose(19.000, 107.000)));
-=======
+
         // Path 1 is the final resting place, jump from path0 to path 2 for multiple ball collection.
-        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(19.000, 108.000).mirror()));
->>>>>>> Stashed changes
-        path1.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(180));
         // Start here from path0 to collect multiple balls
         path2 = new Path(new BezierCurve(new Pose(26.000,120.000), new Pose(48.000, 96.000).mirror()));
         path2.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));

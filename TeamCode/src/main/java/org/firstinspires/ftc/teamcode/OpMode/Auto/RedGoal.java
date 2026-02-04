@@ -2,7 +2,10 @@ package org.firstinspires.ftc.teamcode.OpMode.Auto;
 
 import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.InstantCommand;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
+import com.arcrobotics.ftclib.command.ParallelDeadlineGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.pedropathing.geometry.BezierCurve;
 import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.Path;
@@ -44,42 +47,39 @@ public class RedGoal extends AutoBase{
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000).mirror(), new Pose(26.000, 120.000).mirror()));
         path0.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
-<<<<<<< Updated upstream
-        path1 = new Path(new BezierCurve(new Pose(26, 120).mirror(), new Pose(19.000, 106 .000).mirror()));
-=======
+
         // Path 1 is the final resting place, jump from path0 to path 2 for multiple ball collection.
         path1 = new Path(new BezierCurve(new Pose(26.000, 120.000).mirror(), new Pose(19.000, 106.000).mirror()));
->>>>>>> Stashed changes
-        path1.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(0));
+
         // Start here from path0 to collect multiple balls
         path2 = new Path(new BezierCurve(new Pose(26.000,120.000).mirror(), new Pose(48.000, 96.000).mirror()));
         path2.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path3 = new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 84.000).mirror()));
         path3.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path4 = new Path(new BezierCurve(new Pose(48.000, 84.000).mirror(), new Pose(8.000, 84.000).mirror()));
+        path4 = new Path(new BezierCurve(new Pose(48.000, 84.000).mirror(), new Pose(13.000, 84.000).mirror()));
         path4.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path5 = new Path(new BezierCurve(new Pose(8.000, 84.000).mirror(), new Pose(36.000, 84.000).mirror()));
-        path5.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path5 = new Path(new BezierCurve(new Pose(13.000, 84.000).mirror(), new Pose(36.000, 84.000).mirror()));
+        path5.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(36));
         path6 = new Path(new BezierCurve(new Pose(36.000, 84.000).mirror(), new Pose(36.000, 108.000).mirror()));
-        path6.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path6.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
         path7 = new Path(new BezierCurve(new Pose(36.000, 108.000).mirror(), new Pose(26.000, 120.000).mirror()));
-        path7.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(0));
+        path7.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
         path8 = new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 60.000).mirror()));
         path8.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path9 = new Path(new BezierCurve(new Pose(48.000, 60.000).mirror(), new Pose(1.000, 60.000).mirror()));
+        path9 = new Path(new BezierCurve(new Pose(48.000, 60.000).mirror(), new Pose(12.000, 60.000).mirror()));
         path9.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path10 = new Path(new BezierCurve(new Pose(1.000, 60.000).mirror(), new Pose(36.000, 60.000).mirror()));
+        path10 = new Path(new BezierCurve(new Pose(12.000, 60.000).mirror(), new Pose(36.000, 60.000).mirror()));
         path10.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path11= new Path(new BezierCurve(new Pose(36.000, 60.000).mirror(), new Pose(36.000, 108.000).mirror()));
         path11.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path12= new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 36.000).mirror()));
         path12.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path13= new Path(new BezierCurve(new Pose(48.000, 36.000).mirror(), new Pose(1.000, 36.000).mirror()));
+        path13= new Path(new BezierCurve(new Pose(48.000, 36.000).mirror(), new Pose(12.000, 36.000).mirror()));
         path13.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path14= new Path(new BezierCurve(new Pose(1.000, 36.000).mirror(), new Pose(36.000, 36.000).mirror()));
-        path14.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path14= new Path(new BezierCurve(new Pose(12.000, 36.000).mirror(), new Pose(36.000, 36.000).mirror()));
+        path14.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(36));
         path15= new Path(new BezierCurve(new Pose(36.000, 36.000).mirror(), new Pose(36.000, 108.000).mirror()));
-        path15.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path15.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
     }
 
     @Override
@@ -140,22 +140,32 @@ public class RedGoal extends AutoBase{
                 setPathTo0,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 new RetractCommand(launchSubsystem),
+                new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
+                new WaitCommand(100),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo3,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo4,
-                new AutoIntakeCommand(intakeSubsystem),
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
+                new ParallelDeadlineGroup(
+                        new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                        new AutoIntakeCommand(intakeSubsystem)
+                ),
                 // Move but Slow
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+
                 // Wait?
                 setPathTo5,
+                new InstantCommand(()->{follower.setMaxPower(1);}),
                 // Stop intake
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo6,
+
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new WaitCommand(250),
+
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 new LaunchCommand(launchSubsystem),
@@ -166,17 +176,21 @@ public class RedGoal extends AutoBase{
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo9,
                 // Start intake
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 // Move but Slow
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 // Wait?
                 setPathTo10,
                 // Stop intake
+                new InstantCommand(()->{follower.setMaxPower(1);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo11,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new WaitCommand(250),
                 new LaunchCommand(launchSubsystem),
+                new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
@@ -184,11 +198,13 @@ public class RedGoal extends AutoBase{
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo13,
                 // Start intake
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 // Move but Slow
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 // Wait?
                 setPathTo14,
                 // Stop intake
+                new InstantCommand(()->{follower.setMaxPower(1);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo15,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
