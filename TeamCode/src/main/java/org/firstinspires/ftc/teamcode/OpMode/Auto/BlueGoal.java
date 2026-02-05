@@ -35,13 +35,15 @@ public class BlueGoal extends AutoBase{
         rightCatapultMotor = hardwareMap.get(DcMotor.class,"catapult1");
         leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
         intake = hardwareMap.get(DcMotor.class, "intake");
+
         // intakeMotor = hardwareMap.get(DcMotor.class,"intake");
+        // Check this
         follower.setStartingPose(new Pose(24,122,Math.toRadians(144)));
         autoDriveSubsystem = new AutoDriveSubsystem(follower, telemetry, new Pose(22.5,124.5,Math.toRadians(144)));
         launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
         intakeSubsystem = new IntakeSubsystem(intake);
-
     }
+
     @Override
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000), new Pose(26.000, 120.000)));
@@ -52,33 +54,33 @@ public class BlueGoal extends AutoBase{
 
         // Start here from path0 to collect multiple balls
         path2 = new Path(new BezierCurve(new Pose(26.000,120.000), new Pose(48.000, 96.000)));
-        path2.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path2.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
         path3 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 84.000)));
-        path3.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path3.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
         path4 = new Path(new BezierCurve(new Pose(48.000, 84.000), new Pose(13.000, 84.000)));
-        path4.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path4.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
         path5 = new Path(new BezierCurve(new Pose(13.000, 84.000), new Pose(36.000, 84.000)));
-        path5.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(36));
-        path6 = new Path(new BezierCurve(new Pose(36.000, 84.000).mirror(), new Pose(36.000, 108.000)));
-        path6.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
+        path5.setLinearHeadingInterpolation(Math.toRadians(270), Math.toRadians(144));
+        path6 = new Path(new BezierCurve(new Pose(36.000, 84.000), new Pose(36.000, 108.000)));
+        path6.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
         path7 = new Path(new BezierCurve(new Pose(36.000, 108.000), new Pose(26.000, 120.000)));
-        path7.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
+        path7.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
         path8 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 60.000)));
-        path8.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path8.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
         path9 = new Path(new BezierCurve(new Pose(48.000, 60.000), new Pose(12.000, 60.000)));
-        path9.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path10 = new Path(new BezierCurve(new Pose(12.000, 60.000).mirror(), new Pose(36.000, 60.000).mirror()));
-        path10.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path11= new Path(new BezierCurve(new Pose(36.000, 60.000).mirror(), new Pose(36.000, 108.000).mirror()));
-        path11.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path12= new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 36.000).mirror()));
-        path12.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path13= new Path(new BezierCurve(new Pose(48.000, 36.000).mirror(), new Pose(12.000, 36.000).mirror()));
-        path13.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path14= new Path(new BezierCurve(new Pose(12.000, 36.000).mirror(), new Pose(36.000, 36.000).mirror()));
-        path14.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(36));
-        path15= new Path(new BezierCurve(new Pose(36.000, 36.000).mirror(), new Pose(36.000, 108.000).mirror()));
-        path15.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
+        path9.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path10 = new Path(new BezierCurve(new Pose(12.000, 60.000), new Pose(36.000, 60.000)));
+        path10.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path11= new Path(new BezierCurve(new Pose(36.000, 60.000), new Pose(36.000, 108.000)));
+        path11.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path12= new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 36.000)));
+        path12.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path13= new Path(new BezierCurve(new Pose(48.000, 36.000), new Pose(12.000, 36.000)));
+        path13.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path14= new Path(new BezierCurve(new Pose(12.000, 36.000), new Pose(36.000, 36.000)));
+        path14.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(144));
+        path15= new Path(new BezierCurve(new Pose(36.000, 36.000), new Pose(36.000, 108.000)));
+        path15.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
     }
 
     @Override
@@ -210,6 +212,8 @@ public class BlueGoal extends AutoBase{
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new RetractCommand(launchSubsystem),
+                new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
                 setPathTo1,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry)
