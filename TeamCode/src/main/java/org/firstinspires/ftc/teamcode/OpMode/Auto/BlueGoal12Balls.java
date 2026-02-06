@@ -19,11 +19,10 @@ import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.AutoIntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
-import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous( name= "Blue Goal", group ="Blue")
-public class BlueGoal extends AutoBase{
+@Autonomous( name= "Blue Goal 12 balls", group ="Blue")
+public class BlueGoal12Balls extends AutoBase{
     Command setPathTo15, setPathTo14, setPathTo13, setPathTo12, setPathTo11, setPathTo10, setPathTo9, setPathTo8, setPathTo7, setPathTo6, setPathTo5, setPathTo4, setPathTo3, setPathTo2, setPathTo1, setPathTo0;
     Path path15, path14, path13, path12, path11, path10, path9, path8, path7, path6, path5, path4, path3, path2, path1, path0;
     private DcMotor rightCatapultMotor, leftCatapultMotor, intake;
@@ -47,10 +46,10 @@ public class BlueGoal extends AutoBase{
     @Override
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000), new Pose(26.000, 120.000)));
-        path0.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
+        path0.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
 
         // Path 1 is the final resting place, jump from path0 to path 2 for multiple ball collection.
-        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(19.000, 106.000)));
+        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(24.000, 90.000)));
 
         // Start here from path0 to collect multiple balls
         path2 = new Path(new BezierCurve(new Pose(26.000,120.000), new Pose(48.000, 96.000)));
