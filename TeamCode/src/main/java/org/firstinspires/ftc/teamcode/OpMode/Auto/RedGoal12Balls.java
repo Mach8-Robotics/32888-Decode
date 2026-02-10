@@ -56,7 +56,7 @@ public class RedGoal12Balls extends AutoBase{
         path2.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path3 = new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 84.000).mirror()));
         path3.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path4 = new Path(new BezierCurve(new Pose(48.000, 84.000).mirror(), new Pose(13.000, 84.000).mirror()));
+        path4 = new Path(new BezierCurve(new Pose(48.000, 84.000).mirror(), new Pose(15.000, 84.000).mirror()));
         path4.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path5 = new Path(new BezierCurve(new Pose(13.000, 84.000).mirror(), new Pose(36.000, 84.000).mirror()));
         path5.setLinearHeadingInterpolation(Math.toRadians(90), Math.toRadians(36));
