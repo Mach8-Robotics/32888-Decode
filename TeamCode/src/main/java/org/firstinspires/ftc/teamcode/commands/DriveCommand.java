@@ -10,19 +10,38 @@ public class DriveCommand extends CommandBase {
     private DriveSubSystem driveSubSystem;
     private DoubleSupplier strafe,forward, turn, gryoAngle;
     private boolean fieldCentric;
+    private double powerFactor;
 
-         public DriveCommand(DriveSubSystem driveSubSystem,
-                             DoubleSupplier strafe,
-                             DoubleSupplier forward,
-                             DoubleSupplier turn,
-                             DoubleSupplier gryoAngle,boolean fieldCentric){
-            this.driveSubSystem = driveSubSystem;
-            this.strafe = strafe;
-            this.forward = forward;
-            this.turn = turn;
-            this.gryoAngle = gryoAngle;
-            this.fieldCentric = fieldCentric;
-            addRequirements(driveSubSystem);
+     public DriveCommand(DriveSubSystem driveSubSystem,
+                         DoubleSupplier strafe,
+                         DoubleSupplier forward,
+                         DoubleSupplier turn,
+                         DoubleSupplier gryoAngle,
+                         boolean fieldCentric){
+        this.driveSubSystem = driveSubSystem;
+        this.strafe = strafe;
+        this.forward = forward;
+        this.turn = turn;
+        this.gryoAngle = gryoAngle;
+        this.fieldCentric = fieldCentric;
+        addRequirements(driveSubSystem);
+        powerFactor = 1.00;
+    }
+    public DriveCommand(DriveSubSystem driveSubSystem,
+                        DoubleSupplier strafe,
+                        DoubleSupplier forward,
+                        DoubleSupplier turn,
+                        DoubleSupplier gryoAngle,
+                        boolean fieldCentric,
+                        double powerFactor){
+        this.driveSubSystem = driveSubSystem;
+        this.strafe = strafe;
+        this.forward = forward;
+        this.turn = turn;
+        this.gryoAngle = gryoAngle;
+        this.fieldCentric = fieldCentric;
+        addRequirements(driveSubSystem);
+        this.powerFactor = powerFactor;
     }
     @Override
     public boolean isFinished() {
@@ -30,6 +49,10 @@ public class DriveCommand extends CommandBase {
     }
     @Override
     public void execute(){
-        driveSubSystem.drive(strafe.getAsDouble(), forward.getAsDouble(), turn.getAsDouble(),gryoAngle.getAsDouble(),fieldCentric);
+        driveSubSystem.drive(strafe.getAsDouble()*powerFactor,
+                            forward.getAsDouble()*powerFactor,
+                            turn.getAsDouble()*powerFactor,
+                            gryoAngle.getAsDouble(),
+                            fieldCentric);
     }
 }
