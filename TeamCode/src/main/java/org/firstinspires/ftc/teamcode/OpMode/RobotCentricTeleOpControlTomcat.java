@@ -45,6 +45,10 @@ public class RobotCentricTeleOpControlTomcat extends CommandOpMode{
         frontright = new Motor(hardwareMap,"right_front_drive");
         backleft = new Motor(hardwareMap,"left_back_drive");
         backright = new Motor(hardwareMap,"right_back_drive");
+        frontleft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        frontright.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        backleft.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        backright.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         driveSubSystem = new DriveSubSystem(frontleft,backleft,frontright,backright,true);
 
         intakeMotor = hardwareMap.get(DcMotor.class,"intake");
