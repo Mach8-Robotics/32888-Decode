@@ -46,7 +46,7 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         leftCatapultMotor = hardwareMap.get(DcMotor.class, "catapult2");
         launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
         launchSubsystem.setDefaultCommand(new LaunchOrRetractCommand(launchSubsystem,
-                ()-> secondaryOp.gamepad.right_trigger>0.2,
+                ()-> driverOp.gamepad.right_trigger>0.2,
                 ()-> secondaryOp.gamepad.right_bumper));
 
         frontleft = new Motor(hardwareMap,"left_front_drive");
