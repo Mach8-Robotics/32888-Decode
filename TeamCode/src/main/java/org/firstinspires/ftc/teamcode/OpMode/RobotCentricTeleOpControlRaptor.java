@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.OpMode;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.Pose;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,15 +12,18 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Subsystem.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.DriveSubSystem;
 import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.RangeSubsystem;
+import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
 import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
 import org.firstinspires.ftc.teamcode.commands.MonitorRangeCommand;
+import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 
 @TeleOp(name = "Raptor: Competition TeleOp")
@@ -35,6 +40,9 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
     private DistanceSensor distanceSensor;
     private Servo led;
     private RangeSubsystem rangeSubsystem;
+    private AutoDriveSubsystem autoDriveSubsystem;
+    private Follower follower;
+    private Pose startpose;
 
     @Override
     public void initialize() {
@@ -49,11 +57,11 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
                 ()-> driverOp.gamepad.right_trigger>0.2,
                 ()-> secondaryOp.gamepad.right_bumper));
 
-        frontleft = new Motor(hardwareMap,"left_front_drive");
-        frontright = new Motor(hardwareMap,"right_front_drive");
-        backleft = new Motor(hardwareMap,"left_back_drive");
-        backright = new Motor(hardwareMap,"right_back_drive");
-        driveSubSystem = new DriveSubSystem(frontleft,backleft,frontright,backright);
+        follower = Constants.createFollower(hardwareMap);
+        startpose = new Pose(0,0,0);
+        follower.setStartingPose(startpose);
+        follower.setPose(startpose);
+        autoDriveSubsystem = new AutoDriveSubsystem(follower,telemetry,startpose);
 
         intakeMotor = hardwareMap.get(DcMotor.class,"intake");
         intakeSubsystem = new IntakeSubsystem(intakeMotor);
@@ -76,13 +84,15 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         rangeSubsystem=new RangeSubsystem(distanceSensor,led);
         rangeSubsystem.setDefaultCommand(new MonitorRangeCommand(rangeSubsystem));
 
-        //Drive commands
-        driveSubSystem.setDefaultCommand(new DriveCommand(driveSubSystem,
-                                                        driverOp::getLeftX,
-                                                        driverOp::getLeftY,
-                                                        driverOp::getRightX,
-                                                        imuSubsystem::getYawDeg,
-                                                false));
+
+
+        AutoDriveCommand autoDriveCommand = new AutoDriveCommand(autoDriveSubsystem,
+                driverOp::getLeftX,
+                driverOp::getLeftY,
+                driverOp::getRightX,
+                telemetry);
+        autoDriveSubsystem.setDefaultCommand(autoDriveCommand);
+        autoDriveSubsystem.startTeleopDrive();
 }
 
     public void runOpMode(){

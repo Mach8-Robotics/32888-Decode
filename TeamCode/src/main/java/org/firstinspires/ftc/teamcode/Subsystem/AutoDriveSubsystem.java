@@ -64,11 +64,11 @@ public class AutoDriveSubsystem extends SubsystemBase {
         return follower.getPose();
     }
     public void startTeleopDrive(){
-        follower.startTeleopDrive();
+        follower.startTeleopDrive(true);
     }
     public void setTeleOpMovementVectors(double forwardSpeed, double strafeSpeed, double heading, boolean robotCentric){
-        follower.setTeleOpDrive(-strafeSpeed,forwardSpeed
-                 , heading, false);
+        follower.setTeleOpDrive(forwardSpeed,-strafeSpeed,
+                  -heading, robotCentric);
         follower.updatePose();
     }
 
