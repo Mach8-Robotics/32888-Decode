@@ -138,20 +138,20 @@ public class RedGoal9Balls extends AutoBase{
         });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
                 setPathTo0,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 new RetractCommand(launchSubsystem),
                 new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
                 new WaitCommand(100),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 setPathTo3,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 setPathTo4,
-                new InstantCommand(()->{follower.setMaxPower(0.5);}),
+                new InstantCommand(()->{follower.setMaxPower(0.6);}),
                 new ParallelDeadlineGroup(
-                        new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                        new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                         new AutoIntakeCommand(intakeSubsystem)
                 ),
                 // Move but Slow
@@ -160,55 +160,57 @@ public class RedGoal9Balls extends AutoBase{
                 setPathTo5,
                 new InstantCommand(()->{follower.setMaxPower(1);}),
                 // Stop intake
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo6,
 
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new WaitCommand(250),
 
                 setPathTo7,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new LaunchCommand(launchSubsystem),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo8,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo9,
                 // Start intake
-                new InstantCommand(()->{follower.setMaxPower(0.5);}),
+                new InstantCommand(()->{follower.setMaxPower(0.6);}),
                 // Move but Slow
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 // Wait?
                 setPathTo10,
                 // Stop intake
                 new InstantCommand(()->{follower.setMaxPower(1);}),
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo11,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo7,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new WaitCommand(250),
                 new LaunchCommand(launchSubsystem),
                 new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo12,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo13,
                 // Start intake
-                new InstantCommand(()->{follower.setMaxPower(0.5);}),
+                new InstantCommand(()->{follower.setMaxPower(0.6);}),
                 // Move but Slow
-                new AutoDriveCommand(autoDriveSubsystem, telemetry),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 // Wait?
                 setPathTo14,
                 // Stop intake
                 new InstantCommand(()->{follower.setMaxPower(1);}),
-                new ParallelCommandGroup(new AutoDriveCommand(autoDriveSubsystem, telemetry), new RetractCommand(launchSubsystem)),
-
+                new ParallelCommandGroup(
+                        new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                        new RetractCommand(launchSubsystem)
+                ),
                 setPathTo15,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry)
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000)
                // setPathTo7,
                // new AutoDriveCommand(autoDriveSubsystem, telemetry),
               // new RetractCommand(launchSubsystem),

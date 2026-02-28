@@ -8,7 +8,7 @@ public class LaunchSubsystem extends SubsystemBase {
     private DcMotor LeftMotor, RightMotor;
     private static final double LAUNCH_POWER = -1.0;
     private static final double RETRACT_POWER = 1.0;
-    private static final double HOLD_POWER = 0.1;
+    private static final double HOLD_POWER = 0.2;
 
 
     public LaunchSubsystem(DcMotor RightMotor, DcMotor LeftMotor){
