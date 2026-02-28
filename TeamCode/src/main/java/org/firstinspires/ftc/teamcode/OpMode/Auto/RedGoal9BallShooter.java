@@ -164,7 +164,7 @@ public class RedGoal9BallShooter extends AutoBase{
                 setPathTo3,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 setPathTo4,
-                new InstantCommand(()->{follower.setMaxPower(0.6);}),
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 new ParallelDeadlineGroup(
                         new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                         new AutoIntakeCommand(intakeSubsystem)
@@ -179,7 +179,7 @@ public class RedGoal9BallShooter extends AutoBase{
                 setPathTo6a,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo6b,
-                new InstantCommand(()->{follower.setMaxPower(0.6);}),
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new WaitCommand(1000),
                 setPathTo6c,
@@ -200,7 +200,7 @@ public class RedGoal9BallShooter extends AutoBase{
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo9,
                 // Start intake
-                new InstantCommand(()->{follower.setMaxPower(0.6);}),
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 // Move but Slow
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 // Wait?
