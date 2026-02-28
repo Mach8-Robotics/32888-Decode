@@ -157,7 +157,7 @@ public class BlueGoal9BallShooter extends AutoBase{
                 new RetractCommand(launchSubsystem),
                 new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
-                new WaitCommand(100),
+                new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
@@ -192,7 +192,9 @@ public class BlueGoal9BallShooter extends AutoBase{
 
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                new WaitCommand(250),
                 new LaunchCommand(launchSubsystem),
+                new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),

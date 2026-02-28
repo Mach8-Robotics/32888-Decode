@@ -168,7 +168,9 @@ public class RedGoal12Balls extends AutoBase{
 
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
+                new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
@@ -211,9 +213,10 @@ public class RedGoal12Balls extends AutoBase{
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo7,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                new RetractCommand(launchSubsystem),
-                new WaitCommand(500),
+                new WaitCommand(250),
                 new LaunchCommand(launchSubsystem),
+                new WaitCommand(250),
+                new RetractCommand(launchSubsystem),
                 setPathTo1,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000)
         );
