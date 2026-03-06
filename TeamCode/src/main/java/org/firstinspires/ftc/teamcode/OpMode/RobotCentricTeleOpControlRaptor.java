@@ -18,12 +18,13 @@ import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.RangeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystem.WingSubsystem;
 import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
-import org.firstinspires.ftc.teamcode.commands.DriveCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
 import org.firstinspires.ftc.teamcode.commands.MonitorRangeCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
+
 
 
 @TeleOp(name = "Raptor: Competition TeleOp")
@@ -33,12 +34,15 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
     private LaunchSubsystem launchSubsystem;
     private ImuSubsystem imuSubsystem;
     private IntakeSubsystem intakeSubsystem;
+    private WingSubsystem wingSubsystem;
     private DcMotor rightCatapultMotor, leftCatapultMotor;
     private Motor frontleft,frontright,backleft,backright;
     private DcMotor intakeMotor;
 
     private DistanceSensor distanceSensor;
     private Servo led;
+    private Servo rightAxonServo;
+    private Servo leftAxonServo;
     private RangeSubsystem rangeSubsystem;
     private AutoDriveSubsystem autoDriveSubsystem;
     private Follower follower;
@@ -81,11 +85,11 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
 
         distanceSensor=hardwareMap.get(DistanceSensor.class,"distance_sensor");
         led=hardwareMap.get(Servo.class,"led");
+        rightAxonServo=hardwareMap.get(Servo.class,"rightAxonServo");
+        leftAxonServo=hardwareMap.get(Servo.class,"leftAxonServo");
         rangeSubsystem=new RangeSubsystem(distanceSensor,led);
         rangeSubsystem.setDefaultCommand(new MonitorRangeCommand(rangeSubsystem));
-
-
-
+        wingSubsystem=new WingSubsystem(leftAxonServo, rightAxonServo);
         AutoDriveCommand autoDriveCommand = new AutoDriveCommand(autoDriveSubsystem,
                 driverOp::getLeftX,
                 driverOp::getLeftY,

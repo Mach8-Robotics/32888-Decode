@@ -23,8 +23,8 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 @Autonomous( name= "Blue Goal 9 Ball SHOOTER", group ="Blue")
 public class BlueGoal9BallShooter extends AutoBase{
-    Command setPathTo15, setPathTo14, setPathTo13, setPathTo12, setPathTo11, setPathTo10, setPathTo9, setPathTo8, setPathTo7, setPathTo6, setPathTo6a, setPathTo6b, setPathTo6c, setPathTo5, setPathTo4, setPathTo3, setPathTo2, setPathTo1, setPathTo0;
-    Path path15, path14, path13, path12, path11, path10, path9, path8, path7, path6, path6a, path6b, path6c, path5, path4, path3, path2, path1, path0;
+    Command setPathTo17,setPathTo16,setPathTo15, setPathTo14, setPathTo13, setPathTo12, setPathTo11, setPathTo10, setPathTo9, setPathTo8, setPathTo7, setPathTo6, setPathTo5, setPathTo4, setPathTo3, setPathTo2, setPathTo1, setPathTo0;
+    Path path17, path16, path15, path14, path13, path12, path11, path10, path9, path8, path7, path6, path5, path4, path3, path2, path1, path0;
     private DcMotor rightCatapultMotor, leftCatapultMotor, intake;
     private LaunchSubsystem launchSubsystem;
     private IntakeSubsystem intakeSubsystem;
@@ -47,45 +47,40 @@ public class BlueGoal9BallShooter extends AutoBase{
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000), new Pose(26.000, 120.000)));
         path0.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
-
-        // Path 1 is the final resting place, jump from path0 to path 2 for multiple ball collection.
-        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(24.000, 90.000)));
-
-        // Start here from path0 to collect multiple balls
-        path2 = new Path(new BezierCurve(new Pose(26.000,120.000), new Pose(48.000, 96.000)));
+        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(48.000, 96.000)));
+        path1.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path2 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 60.000)));
         path2.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path3 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 84.000)));
+        path3 = new Path(new BezierCurve(new Pose(48.000,60.000), new Pose(12.000, 60.000)));
         path3.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path4 = new Path(new BezierCurve(new Pose(48.000, 84.000), new Pose(15.000, 84.000)));
+        path4 = new Path(new BezierCurve(new Pose(12.000, 60.000), new Pose(36.000, 60.000)));
         path4.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path5 = new Path(new BezierCurve(new Pose(13.000, 84.000), new Pose(36.000, 84.000)));
-        path5.setLinearHeadingInterpolation(Math.toRadians(270), Math.toRadians(144));
-        path6 = new Path(new BezierCurve(new Pose(36.000, 72.000), new Pose(36.000, 108.000)));
-        path6.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path6a = new Path(new BezierCurve(new Pose(36.000, 84.000), new Pose(36.000, 75.000)));
-        path6a.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path6b = new Path(new BezierCurve(new Pose(36.000, 75.000), new Pose(18.000, 75.000)));
-        path6b.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path6c = new Path(new BezierCurve(new Pose(18.000, 75.000), new Pose(36.000, 75.000)));
-        path6c.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
-        path7 = new Path(new BezierCurve(new Pose(36.000, 108.000), new Pose(26.000, 120.000)));
-        path7.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
-        path8 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 60.000)));
-        path8.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path9 = new Path(new BezierCurve(new Pose(48.000, 60.000), new Pose(12.000, 60.000)));
-        path9.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path10 = new Path(new BezierCurve(new Pose(12.000, 60.000), new Pose(36.000, 60.000)));
-        path10.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path11= new Path(new BezierCurve(new Pose(36.000, 60.000), new Pose(36.000, 108.000)));
+        path5 = new Path(new BezierCurve(new Pose(36.000, 60.000), new Pose(36.000, 75.000)));
+        path5.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path6 = new Path(new BezierCurve(new Pose(36.000, 75.000), new Pose(18.000, 75.000)));
+        path6.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path7 = new Path(new BezierCurve(new Pose(18.000, 75.000), new Pose(48.000, 75.000)));
+        path7.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
+        path8 = new Path(new BezierCurve(new Pose(48.000, 75.000), new Pose(48.000, 96.000)));
+        path8.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path9 = new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(26.000, 120.000)));
+        path9.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path10 = new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(48.000, 96.000)));  //x(36)Changes for next Config
+        path10.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path11= new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 84.000)));
         path11.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path12= new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(48.000, 36.000)));
+        path12= new Path(new BezierCurve(new Pose(48.000, 84.000), new Pose(18.000, 84.000)));
         path12.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path13= new Path(new BezierCurve(new Pose(48.000, 36.000), new Pose(12.000, 36.000)));
+        path13= new Path(new BezierCurve(new Pose(18.000, 84.000), new Pose(36.000, 84.000)));
         path13.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
-        path14= new Path(new BezierCurve(new Pose(12.000, 36.000), new Pose(36.000, 36.000)));
-        path14.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(144));
-        path15= new Path(new BezierCurve(new Pose(48.000, 96.000), new Pose(36.000, 72.000)));
-        path15.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path14= new Path(new BezierCurve(new Pose(36.000, 84.000), new Pose(36.000, 108.000)));
+        path14.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path15= new Path(new BezierCurve(new Pose(36.000, 108.000), new Pose(26.000, 120.000)));
+        path15.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
+        path16= new Path(new BezierCurve(new Pose(26.000, 120.000), new Pose(36.000, 108.000)));
+        path16.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path17= new Path(new BezierCurve(new Pose(36.000, 108.000), new Pose(36.000, 75.000)));
+        path17.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
     }
 
     @Override
@@ -115,15 +110,6 @@ public class BlueGoal9BallShooter extends AutoBase{
         setPathTo6 = new InstantCommand(()->{
             autoDriveSubsystem.followPath(path6, true);
         });
-        setPathTo6a = new InstantCommand(()->{
-            autoDriveSubsystem.followPath(path6a, true);
-        });
-        setPathTo6b = new InstantCommand(()->{
-            autoDriveSubsystem.followPath(path6b, true);
-        });
-        setPathTo6c = new InstantCommand(()->{
-            autoDriveSubsystem.followPath(path6c, true);
-        });
         setPathTo7 = new InstantCommand(()->{
             autoDriveSubsystem.followPath(path7, true);
         });
@@ -151,6 +137,12 @@ public class BlueGoal9BallShooter extends AutoBase{
         setPathTo15 = new InstantCommand(()->{
             autoDriveSubsystem.followPath(path15, true);
         });
+        setPathTo16 = new InstantCommand(()->{
+            autoDriveSubsystem.followPath(path16, true);
+        });
+        setPathTo17 = new InstantCommand(()->{
+            autoDriveSubsystem.followPath(path17, true);
+        });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
                 setPathTo0,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
@@ -159,91 +151,63 @@ public class BlueGoal9BallShooter extends AutoBase{
                 new LaunchCommand(launchSubsystem),
                 new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
+                setPathTo1,
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 setPathTo2,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
                 setPathTo3,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
-                setPathTo4,
                 new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 new ParallelDeadlineGroup(
                         new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                         new AutoIntakeCommand(intakeSubsystem)
                 ),
-                // Move but Slow
-
-                // Wait?
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                setPathTo4,
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo5,
-                new InstantCommand(()->{follower.setMaxPower(1);}),
-                // Stop intake
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                setPathTo6a,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                setPathTo6b,
-                new InstantCommand(()->{follower.setMaxPower(0.5);}),
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                new WaitCommand(1000),
-                setPathTo6c,
                 new InstantCommand(()->{follower.setMaxPower(1);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo6,
-
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                new WaitCommand(250),
-
+                new WaitCommand(1000),
                 setPathTo7,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                new WaitCommand(250),
-                new LaunchCommand(launchSubsystem),
-                new WaitCommand(250),
-                new RetractCommand(launchSubsystem),
-                setPathTo2,
+                new InstantCommand(()->{follower.setMaxPower(1);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo8,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo9,
-                // Start intake
-                new InstantCommand(()->{follower.setMaxPower(0.5);}),
-                // Move but Slow
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                // Wait?
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
+                new RetractCommand(launchSubsystem),
+                new WaitCommand(500),
+                new LaunchCommand(launchSubsystem),
+                new WaitCommand(250),
+                new RetractCommand(launchSubsystem),
                 setPathTo10,
-                // Stop intake
-                new InstantCommand(()->{follower.setMaxPower(1);}),
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo11,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                setPathTo7,
+                setPathTo12,
+                new InstantCommand(()->{follower.setMaxPower(0.5);}),
+                new ParallelDeadlineGroup(
+                        new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                        new AutoIntakeCommand(intakeSubsystem)
+                ),
+                setPathTo13,
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                setPathTo14,
+                new InstantCommand(()->{follower.setMaxPower(1);}),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
+                setPathTo15,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new WaitCommand(250),
                 new LaunchCommand(launchSubsystem),
                 new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
-                setPathTo2,
+                setPathTo16,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
-                setPathTo15,
+                setPathTo17,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000)
-               // setPathTo12,
-              //  new AutoDriveCommand(autoDriveSubsystem, telemetry),
-              //  setPathTo13,
-                // Start intake
-              //  new InstantCommand(()->{follower.setMaxPower(0.5);}),
-                // Move but Slow
-             //   new AutoDriveCommand(autoDriveSubsystem, telemetry),
-                // Wait?
-             //   setPathTo14,
-                // Stop intake
-              //  new InstantCommand(()->{follower.setMaxPower(1);}),
-             //   new ParallelCommandGroup(new AutoDriveCommand(autoDriveSubsystem, telemetry), new RetractCommand(launchSubsystem)),
-
-               // setPathTo15,
-               // new AutoDriveCommand(autoDriveSubsystem, telemetry)
-                // setPathTo7,
-                // new AutoDriveCommand(autoDriveSubsystem, telemetry),
-                //new RetractCommand(launchSubsystem),
-                // new WaitCommand(500),
-                // new LaunchCommand(launchSubsystem),
-                //setPathTo1,
-                // new AutoDriveCommand(autoDriveSubsystem, telemetry)
         );
         schedule(new SequentialCommandGroup(
                 runAuto,

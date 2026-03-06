@@ -59,7 +59,7 @@ public class BlueGoal9Balls extends AutoBase{
         path4 = new Path(new BezierCurve(new Pose(48.000, 84.000), new Pose(15.000, 84.000)));
         path4.setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(180));
         path5 = new Path(new BezierCurve(new Pose(13.000, 84.000), new Pose(36.000, 84.000)));
-        path5.setLinearHeadingInterpolation(Math.toRadians(270), Math.toRadians(144));
+        path5.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
         path6 = new Path(new BezierCurve(new Pose(36.000, 84.000), new Pose(36.000, 108.000)));
         path6.setLinearHeadingInterpolation(Math.toRadians(144), Math.toRadians(144));
         path7 = new Path(new BezierCurve(new Pose(36.000, 108.000), new Pose(26.000, 120.000)));
