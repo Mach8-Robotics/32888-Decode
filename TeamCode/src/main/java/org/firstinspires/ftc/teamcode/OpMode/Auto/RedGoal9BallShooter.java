@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.commands.LaunchCommand;
 import org.firstinspires.ftc.teamcode.commands.RetractCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
-@Autonomous( name= "Blue Goal 9 Ball SHOOTER", group ="Blue")
+@Autonomous( name= "Red Goal 9 Ball SHOOTER", group ="Red")
 public class RedGoal9BallShooter extends AutoBase{
     Command setPathTo17,setPathTo16,setPathTo15, setPathTo14, setPathTo13, setPathTo12, setPathTo11, setPathTo10, setPathTo9, setPathTo8, setPathTo7, setPathTo6, setPathTo5, setPathTo4, setPathTo3, setPathTo2, setPathTo1, setPathTo0;
     Path path17, path16, path15, path14, path13, path12, path11, path10, path9, path8, path7, path6, path5, path4, path3, path2, path1, path0;

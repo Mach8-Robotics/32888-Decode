@@ -14,7 +14,7 @@ public class WingSubsystem extends SubsystemBase {
     private Servo rightAxonServo;
     private Servo leftAxonServo;
 private static final double LIFT_OFF_POSITION =0.0;
-    private static final double LIFT_ON_POSITION =0.25;
+    private static final double LIFT_ON_POSITION =0.5;
     public WingSubsystem(Servo leftAxonServo, Servo rightAxonServo) {
     this.leftAxonServo=leftAxonServo;
     this.rightAxonServo=rightAxonServo;
