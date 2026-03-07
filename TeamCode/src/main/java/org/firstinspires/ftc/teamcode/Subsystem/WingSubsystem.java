@@ -18,8 +18,9 @@ private static final double LIFT_OFF_POSITION =0.0;
     public WingSubsystem(Servo leftAxonServo, Servo rightAxonServo) {
     this.leftAxonServo=leftAxonServo;
     this.rightAxonServo=rightAxonServo;
-    this.leftAxonServo.setPosition(LIFT_OFF_POSITION);
-    this.rightAxonServo.setPosition(LIFT_OFF_POSITION);}
+    this.leftAxonServo.setDirection(Servo.Direction.REVERSE);
+    this.rightAxonServo.setDirection(Servo.Direction.FORWARD);
+    }
 
 
     public void CheckButton() {
@@ -33,6 +34,15 @@ private static final double LIFT_OFF_POSITION =0.0;
             leftAxonServo.setPosition(LIFT_OFF_POSITION);
             rightAxonServo.setPosition(LIFT_OFF_POSITION);
         }
+    }
+
+    public void wingsdown(){
+            leftAxonServo.setPosition(LIFT_ON_POSITION);
+            rightAxonServo.setPosition(LIFT_ON_POSITION);
+    }
+    public void wingsup(){
+        leftAxonServo.setPosition(LIFT_OFF_POSITION);
+        rightAxonServo.setPosition(LIFT_OFF_POSITION);
     }
 
 

@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.arcrobotics.ftclib.command.CommandOpMode;
+import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
@@ -90,6 +92,13 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         rangeSubsystem=new RangeSubsystem(distanceSensor,led);
         rangeSubsystem.setDefaultCommand(new MonitorRangeCommand(rangeSubsystem));
         wingSubsystem=new WingSubsystem(leftAxonServo, rightAxonServo);
+        secondaryOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(
+                ()->{wingSubsystem.wingsdown();}
+        ));secondaryOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(
+                ()->{wingSubsystem.wingsup();}
+        ));
+
+
         AutoDriveCommand autoDriveCommand = new AutoDriveCommand(autoDriveSubsystem,
                 driverOp::getLeftX,
                 driverOp::getLeftY,
@@ -106,6 +115,7 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         while(!isStopRequested() && opModeIsActive()){
             run();
         }
+        wingSubsystem.wingsup();
         reset();
     }
 }
