@@ -16,15 +16,19 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Subsystem.AutoDriveSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.DriveSubSystem;
+import org.firstinspires.ftc.teamcode.Subsystem.FootSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.ImuSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.LaunchSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.RangeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystem.WingSubsystem;
 import org.firstinspires.ftc.teamcode.commands.AutoDriveCommand;
+import org.firstinspires.ftc.teamcode.commands.HoldFootCommand;
 import org.firstinspires.ftc.teamcode.commands.IntakeCommand;
 import org.firstinspires.ftc.teamcode.commands.LaunchOrRetractCommand;
+import org.firstinspires.ftc.teamcode.commands.LiftCommand;
 import org.firstinspires.ftc.teamcode.commands.MonitorRangeCommand;
+import org.firstinspires.ftc.teamcode.commands.RetractFootCommand;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 
@@ -36,19 +40,17 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
     private LaunchSubsystem launchSubsystem;
     private ImuSubsystem imuSubsystem;
     private IntakeSubsystem intakeSubsystem;
-    private WingSubsystem wingSubsystem;
     private DcMotor rightCatapultMotor, leftCatapultMotor;
-    private Motor frontleft,frontright,backleft,backright;
     private DcMotor intakeMotor;
 
     private DistanceSensor distanceSensor;
     private Servo led;
-    private Servo rightAxonServo;
-    private Servo leftAxonServo;
     private RangeSubsystem rangeSubsystem;
     private AutoDriveSubsystem autoDriveSubsystem;
     private Follower follower;
     private Pose startpose;
+    private DcMotor foot;
+    private FootSubsystem footSubsystem;
 
     @Override
     public void initialize() {
@@ -87,16 +89,19 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
 
         distanceSensor=hardwareMap.get(DistanceSensor.class,"distance_sensor");
         led=hardwareMap.get(Servo.class,"led");
-        rightAxonServo=hardwareMap.get(Servo.class,"rightAxonServo");
-        leftAxonServo=hardwareMap.get(Servo.class,"leftAxonServo");
         rangeSubsystem=new RangeSubsystem(distanceSensor,led);
         rangeSubsystem.setDefaultCommand(new MonitorRangeCommand(rangeSubsystem));
-        wingSubsystem=new WingSubsystem(leftAxonServo, rightAxonServo);
-        secondaryOp.getGamepadButton(GamepadKeys.Button.A).whenPressed(new InstantCommand(
-                ()->{wingSubsystem.wingsdown();}
-        ));secondaryOp.getGamepadButton(GamepadKeys.Button.B).whenPressed(new InstantCommand(
-                ()->{wingSubsystem.wingsup();}
-        ));
+
+        foot = hardwareMap.get(DcMotor.class,"foot");
+        footSubsystem = new FootSubsystem(foot);
+        footSubsystem.setDefaultCommand(new HoldFootCommand(footSubsystem));
+        secondaryOp.getGamepadButton(GamepadKeys.Button.A)
+                .whenHeld(new LiftCommand(footSubsystem))
+                .whenReleased(new HoldFootCommand(footSubsystem));
+
+        secondaryOp.getGamepadButton(GamepadKeys.Button.B)
+                .whenHeld(new RetractFootCommand(footSubsystem))
+                .whenReleased(new HoldFootCommand(footSubsystem));
 
 
         AutoDriveCommand autoDriveCommand = new AutoDriveCommand(autoDriveSubsystem,
@@ -115,7 +120,6 @@ public class RobotCentricTeleOpControlRaptor extends CommandOpMode{
         while(!isStopRequested() && opModeIsActive()){
             run();
         }
-        wingSubsystem.wingsup();
         reset();
     }
 }
