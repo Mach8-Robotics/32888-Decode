@@ -18,7 +18,11 @@ public class AutoIntakeCommand extends CommandBase {
 
     @Override
     public void execute(){
+<<<<<<< Updated upstream
         intakeSubsystem.Intake(true);
+=======
+        intakeSubsystem.Intake(false);
+>>>>>>> Stashed changes
 
     }
 }
