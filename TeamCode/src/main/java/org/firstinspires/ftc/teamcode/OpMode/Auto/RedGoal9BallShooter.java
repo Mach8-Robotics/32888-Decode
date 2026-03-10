@@ -50,7 +50,7 @@ public class RedGoal9BallShooter extends AutoBase{
         path1 = new Path(new BezierCurve(new Pose(26.000, 120.000).mirror(), new Pose(48.000, 96.000).mirror()));
         path1.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
         path2 = new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 60.000).mirror()));
-        path2.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
+        path2.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(0));
         path3 = new Path(new BezierCurve(new Pose(48.000,60.000).mirror(), new Pose(12.000, 55.000).mirror()));
         path3.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path4 = new Path(new BezierCurve(new Pose(12.000, 55.000).mirror(), new Pose(36.000, 60.000).mirror()));
@@ -145,16 +145,16 @@ public class RedGoal9BallShooter extends AutoBase{
         });
         SequentialCommandGroup runAuto = new SequentialCommandGroup(
                 setPathTo0,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new RetractCommand(launchSubsystem),
                 new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
                 new WaitCommand(250),
                 new RetractCommand(launchSubsystem),
                 setPathTo1,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo2,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo3,
                 new InstantCommand(()->{follower.setMaxPower(0.5);}),
                 new ParallelDeadlineGroup(
@@ -177,7 +177,7 @@ public class RedGoal9BallShooter extends AutoBase{
                 setPathTo8,
                 new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 setPathTo9,
-                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(3500),
+                new AutoDriveCommand(autoDriveSubsystem, telemetry).withTimeout(4000),
                 new RetractCommand(launchSubsystem),
                 new WaitCommand(500),
                 new LaunchCommand(launchSubsystem),
