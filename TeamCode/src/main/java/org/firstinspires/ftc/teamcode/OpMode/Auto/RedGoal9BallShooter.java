@@ -38,7 +38,7 @@ public class RedGoal9BallShooter extends AutoBase{
         // intakeMotor = hardwareMap.get(DcMotor.class,"intake");
         // Check this
         follower.setStartingPose(new Pose(24,122,Math.toRadians(144)).mirror());
-        autoDriveSubsystem = new AutoDriveSubsystem(follower, telemetry, new Pose(22.5,124.5,Math.toRadians(144)));
+        autoDriveSubsystem = new AutoDriveSubsystem(follower, telemetry, new Pose(22.5,124.5,Math.toRadians(144)).mirror());
         launchSubsystem = new LaunchSubsystem(rightCatapultMotor,leftCatapultMotor);
         intakeSubsystem = new IntakeSubsystem(intake);
     }
@@ -47,9 +47,9 @@ public class RedGoal9BallShooter extends AutoBase{
     public void buildpaths() {
         path0 = new Path(new BezierCurve(new Pose(24.000, 122.000).mirror(), new Pose(26.000, 120.000).mirror()));
         path0.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
-        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000).mirror(), new Pose(96.000, 96.000)));
+        path1 = new Path(new BezierCurve(new Pose(26.000, 120.000).mirror(), new Pose(48.000, 96.000).mirror()));
         path1.setLinearHeadingInterpolation(Math.toRadians(36), Math.toRadians(36));
-        path2 = new Path(new BezierCurve(new Pose(96.000, 96.000), new Pose(48.000, 60.000).mirror()));
+        path2 = new Path(new BezierCurve(new Pose(48.000, 96.000).mirror(), new Pose(48.000, 60.000).mirror()));
         path2.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
         path3 = new Path(new BezierCurve(new Pose(48.000,60.000).mirror(), new Pose(12.000, 55.000).mirror()));
         path3.setLinearHeadingInterpolation(Math.toRadians(0), Math.toRadians(0));
